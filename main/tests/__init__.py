@@ -1,3 +1,4 @@
-__all__ = ["UserFunctionalTest"]
+__all__ = ["SignInFunctionalTest", "UserFunctionalTest"]
 
+from main.tests.functional.sign_in_functional_test import SignInFunctionalTest
 from main.tests.functional.user_functional_test import UserFunctionalTest
