@@ -130,3 +130,14 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "main.User"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://redis:6379",
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+LOGIN_REDIRECT_URL = "/user/"
