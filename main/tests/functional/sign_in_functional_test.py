@@ -18,6 +18,7 @@ class SignInFunctionalTest(FunctionalTestCase):
         self.web_driver.find_element(By.XPATH, '//*[@type="submit"]').click()
 
         import logging
+        from django.conf import settings
 
-        logging.getLogger("django.server").critical(self.web_driver.page_source)
+        logging.getLogger("django.server").info(settings.DEBUG)
         self.assertEqual(self.web_driver.current_url, f"{self.live_server_url}/you/")
