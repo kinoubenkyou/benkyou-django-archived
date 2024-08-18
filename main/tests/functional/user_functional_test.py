@@ -31,5 +31,7 @@ class UserReadFunctionalTest(LoginRequiredMixin, FunctionalTestCase):
         self.web_driver.get(f"{self.live_server_url}{reverse("user-read")}")
         self.login()
 
-        self.web_driver.find_element(By.XPATH, '//*[contains(text(), "email@email.com")]')
+        self.web_driver.find_element(
+            By.XPATH, '//*[contains(text(), "email@email.com")]'
+        )
         self.web_driver.find_element(By.XPATH, '//*[contains(text(), "name")]')
