@@ -1,3 +1,4 @@
+from django.test import override_settings
 from django.urls import reverse
 from selenium.webdriver.common.by import By
 
@@ -7,6 +8,7 @@ from main.tests.functional import FunctionalTestCase
 class SignInFunctionalTest(FunctionalTestCase):
     fixtures = ["sign_in"]
 
+    @override_settings(DEBUG=True)
     def test_success(self):
         self.web_driver.get(f"{self.live_server_url}{reverse("sign-in")}")
         self.web_driver.find_element(By.XPATH, '//input[@name="username"]').send_keys(
