@@ -1,4 +1,3 @@
-from django.urls import reverse
 from selenium.webdriver.common.by import By
 
 from main.tests.functional import FunctionalTestCase, LoginRequiredMixin
@@ -8,7 +7,7 @@ class UserCreateFunctionalTest(FunctionalTestCase):
     def test_success(self):
         password = "dr0wss@p"
 
-        self.web_driver.get(f"{self.live_server_url}{reverse("user-create")}")
+        self.web_driver.get(f"{self.live_server_url}/users/create/")
         self.web_driver.find_element(By.XPATH, '//input[@name="email"]').send_keys(
             "email@email.com"
         )
@@ -28,7 +27,7 @@ class UserCreateFunctionalTest(FunctionalTestCase):
 
 class UserReadFunctionalTest(LoginRequiredMixin, FunctionalTestCase):
     def test_success(self):
-        self.web_driver.get(f"{self.live_server_url}{reverse("user-read")}")
+        self.web_driver.get(f"{self.live_server_url}/user/")
         self.login()
 
         self.web_driver.find_element(
