@@ -1,7 +1,8 @@
-from main.tests.functional import FunctionalTestCase, LoginRequiredMixin
+from main.tests.login_required_mixin import LoginRequiredMixin
+from main.tests.test_case import TestCase
 
 
-class SignInFunctionalTest(LoginRequiredMixin, FunctionalTestCase):
+class SignInTest(LoginRequiredMixin, TestCase):
     def test_success(self):
         self.web_driver.get(f"{self.live_server_url}/sign_in/")
         self.login()

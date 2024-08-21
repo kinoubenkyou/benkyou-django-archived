@@ -2,20 +2,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
 from django.core.exceptions import BadRequest
 from django.shortcuts import redirect
-from django.views.generic import CreateView, TemplateView, FormView
+from django.views.generic import FormView
 
-from main.forms import UserCreateForm, UserVerifyEmailForm
-from main.models import User
-
-
-class UserCreateView(CreateView):
-    form_class = UserCreateForm
-    model = User
-    success_url = "/"
-
-
-class UserReadView(LoginRequiredMixin, TemplateView):
-    template_name = "main/user_read.html"
+from main.forms import UserVerifyEmailForm
 
 
 class UserVerifyEmailView(LoginRequiredMixin, FormView):
