@@ -143,3 +143,5 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 LOGIN_REDIRECT_URL = "/user/"
 
 LOGIN_URL = "/sign_in/"
+
+TEST_RUNNER = "main.tests.runner.Runner"

@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.test import LiveServerTestCase
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -17,3 +18,13 @@ class TestCase(LiveServerTestCase):
     def tearDownClass(cls):
         cls.web_driver.quit()
         super().tearDownClass()
+
+    def tearDown(self):
+        cache.clear()
+
+    def find_displayed_elements(self, *args, **kwargs):
+        return [
+            element
+            for element in self.web_driver.find_elements(*args, **kwargs)
+            if element.is_displayed()
+        ]
