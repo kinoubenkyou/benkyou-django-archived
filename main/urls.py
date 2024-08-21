@@ -5,11 +5,9 @@ from main.views import (
     SignInView,
     UserReadView,
     UserVerifyEmailView,
-    ExpiredEmailVerificationView,
 )
 
 urlpatterns = [
-    path("expired_email_verification/", ExpiredEmailVerificationView.as_view()),
     path("sign_in/", SignInView.as_view()),
     path("user/", UserReadView.as_view()),
     path("users/create/", UserCreateView.as_view()),
