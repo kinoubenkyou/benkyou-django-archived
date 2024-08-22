@@ -145,3 +145,5 @@ LOGIN_REDIRECT_URL = "/user/"
 LOGIN_URL = "/sign_in/"
 
 TEST_RUNNER = "main.tests.runner.Runner"
+
+KAFKA_BOOTSTRAP_SERVERS = "kafka"
