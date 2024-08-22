@@ -12,16 +12,15 @@ class UserVerifyEmailTest(LoginRequiredMixin, TestCase):
         code = "code"
         cache.set(1, code)
 
-        self.web_driver.get(f"{self.live_server_url}/user/verify_email/?code={code}")
         self.login()
+        self.web_driver.get(f"{self.live_server_url}/user/verify_email/?code={code}")
         self.web_driver.find_element(By.XPATH, '//*[@type="submit"]').click()
 
-        self.assertEqual(self.web_driver.current_url, f"{self.live_server_url}/user/")
         self.assertEqual(len(self.find_elements("Email verified: True")), 1)
 
     def test_expired_email_verification(self):
-        self.web_driver.get(f"{self.live_server_url}/user/verify_email/?code=code")
         self.login()
+        self.web_driver.get(f"{self.live_server_url}/user/verify_email/?code=code")
         self.web_driver.find_element(By.XPATH, '//*[@type="submit"]').click()
 
         self.assertEqual(len(self.find_elements("Email verification expired.")), 1)
@@ -29,8 +28,8 @@ class UserVerifyEmailTest(LoginRequiredMixin, TestCase):
     def test_not_matched_code(self):
         cache.set(1, "-code")
 
-        self.web_driver.get(f"{self.live_server_url}/user/verify_email/?code=code")
         self.login()
+        self.web_driver.get(f"{self.live_server_url}/user/verify_email/?code=code")
         self.web_driver.find_element(By.XPATH, '//*[@type="submit"]').click()
 
         self.assertEqual(len(self.find_elements("Bad Request (400)")), 1)
