@@ -7,4 +7,5 @@ from main.models import User
 class UserCreateView(CreateView):
     form_class = UserCreateForm
     model = User
-    success_url = "/"
+    success_url = "/users/create_done/"
+    template_name = "main/user_create.html"
