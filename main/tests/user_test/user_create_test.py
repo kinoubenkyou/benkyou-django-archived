@@ -22,4 +22,4 @@ class UserCreateTest(TestCase):
         )
         self.web_driver.find_element(By.XPATH, '//*[@type="submit"]').click()
 
-        self.assertEqual(self.web_driver.current_url, f"{self.live_server_url}/")
+        self.assertEqual(len(self.find_elements("Created user.")), 1)

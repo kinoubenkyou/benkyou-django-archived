@@ -7,10 +7,6 @@ from django.views.generic import FormView
 from main.forms import UserVerifyEmailForm
 
 
-class ExpiredEmailVerification(Exception):
-    pass
-
-
 class UserVerifyEmailView(LoginRequiredMixin, FormView):
     form_class = UserVerifyEmailForm
     success_url = "/user/"
@@ -20,7 +16,7 @@ class UserVerifyEmailView(LoginRequiredMixin, FormView):
         sentinel = object()
         code = cache.get(self.request.user.id, sentinel)
         if code is sentinel:
-            raise ExpiredEmailVerification
+            return render(self.request, "main/expired_email_verification.html")
         elif code != form.cleaned_data["code"]:
             raise BadRequest
         user = self.request.user
@@ -32,9 +28,3 @@ class UserVerifyEmailView(LoginRequiredMixin, FormView):
         initial = super().get_initial()
         initial["code"] = self.request.GET.get("code")
         return initial
-
-    def post(self, request, *args, **kwargs):
-        try:
-            return super().post(request, *args, **kwargs)
-        except ExpiredEmailVerification:
-            return render(request, "main/expired_email_verification.html")
