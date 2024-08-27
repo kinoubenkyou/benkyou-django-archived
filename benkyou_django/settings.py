@@ -147,3 +147,5 @@ LOGIN_URL = "/sign_in/"
 TEST_RUNNER = "main.tests.runner.Runner"
 
 KAFKA_BOOTSTRAP_SERVER = "kafka"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

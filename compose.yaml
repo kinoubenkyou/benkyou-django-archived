@@ -39,6 +39,22 @@ services:
     ports:
       - 9092:9092
 
+  kafka-consumer:
+    build: .
+    command: python manage.py runkafkaconsumer
+    depends_on:
+      kafka:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    secrets:
+      - django_secret_key
+      - postgres_password
+    volumes:
+      - .:/app
+
   postgres:
     image: postgres
     environment:
