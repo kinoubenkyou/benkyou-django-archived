@@ -146,4 +146,4 @@ LOGIN_URL = "/sign_in/"
 
 TEST_RUNNER = "main.tests.runner.Runner"
 
-KAFKA_BOOTSTRAP_SERVERS = "kafka"
+KAFKA_BOOTSTRAP_SERVER = "kafka"
