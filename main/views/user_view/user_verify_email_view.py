@@ -14,10 +14,10 @@ class UserVerifyEmailView(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         sentinel = object()
-        code = cache.get(self.request.user.id, sentinel)
-        if code is sentinel:
+        token = cache.get(f"verify_email.{self.request.user.id}", sentinel)
+        if token is sentinel:
             return render(self.request, "main/expired_email_verification.html")
-        elif code != form.cleaned_data["code"]:
+        elif token != form.cleaned_data["token"]:
             raise BadRequest
         user = self.request.user
         user.email_verified = True
@@ -26,5 +26,5 @@ class UserVerifyEmailView(LoginRequiredMixin, FormView):
 
     def get_initial(self):
         initial = super().get_initial()
-        initial["code"] = self.request.GET.get("code")
+        initial["token"] = self.request.GET.get("token")
         return initial
