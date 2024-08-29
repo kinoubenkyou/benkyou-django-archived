@@ -17,8 +17,8 @@ class TestCase(LiveServerTestCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.web_driver.quit()
         super().tearDownClass()
+        cls.web_driver.quit()
 
     def tearDown(self):
         cache.clear()

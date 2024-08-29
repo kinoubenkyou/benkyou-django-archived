@@ -17,8 +17,8 @@ class StartVerifyEmailJob:
         token = token_urlsafe()
         cache.set(f"verify_email.{user_id}", token)
         send_mail(
-            from_email=None,
-            message=f"http://localhost:8000/user/verify_email/?{urlencode({"token": token})}",
-            recipient_list=[User.objects.get(id=user_id).email],
-            subject="Verify Email",
+            "Verify Email",
+            f"http://localhost:8000/user/verify_email/?{urlencode({"token": token})}",
+            None,
+            [User.objects.get(id=user_id).email],
         )
