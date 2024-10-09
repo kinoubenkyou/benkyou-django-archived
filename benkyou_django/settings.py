@@ -152,9 +152,9 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 CELERY_BROKER_URL = "redis://redis:6379/2"
 
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
 EMAIL_HOST_USER = "kinoubenkyou"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 with Path("/run/secrets/email_host_password").open() as file:
     EMAIL_HOST_PASSWORD = file.read()
